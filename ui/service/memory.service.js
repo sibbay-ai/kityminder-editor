@@ -8,55 +8,62 @@
  *
  * @copyright: Baidu FEX, 2015
  */
-angular.module('kityminderEditor')
-    .service('memory', function() {
-
-        function isQuotaExceeded(e) {
-            var quotaExceeded = false;
-            if (e) {
-                if (e.code) {
-                    switch (e.code) {
-                        case 22:
-                            quotaExceeded = true;
-                            break;
-                        case 1014:
-                            // Firefox
-                            if (e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
-                                quotaExceeded = true;
-                            }
-                            break;
-                    }
-                } else if (e.number === -2147024882) {
-                    // Internet Explorer 8
-                    quotaExceeded = true;
-                }
+angular.module('kityminderEditor').service('memory', function() {
+  function isQuotaExceeded(e) {
+    var quotaExceeded = false;
+    if (e) {
+      if (e.code) {
+        switch (e.code) {
+          case 22:
+            quotaExceeded = true;
+            break;
+          case 1014:
+            // Firefox
+            if (e.name === 'NS_ERROR_DOM_QUOTA_REACHED') {
+              quotaExceeded = true;
             }
-            return quotaExceeded;
+            break;
         }
-
-        return {
-            get: function(key) {
-                var value = window.localStorage.getItem(key);
-                return null || JSON.parse(value);
-            },
-
-            set: function(key, value) {
-                try {
-                    window.localStorage.setItem(key, JSON.stringify(value));
-                    return true;
-                } catch(e) {
-                    if (isQuotaExceeded(e)) {
-                        return false;
-                    }
-                }
-            },
-            remove: function(key) {
-                var value = window.localStorage.getItem(key);
-                window.localStorage.removeItem(key);
-                return value;
-            },
-            clear: function() {
-                window.localStorage.clear();
-            }
+      } else if (e.number === -2147024882) {
+        // Internet Explorer 8
+        quotaExceeded = true;
+      }
     }
+    return quotaExceeded;
+  }
+
+  return {
+    get: function(key) {
+      var value = window.vscode.getState() ? window.vscode.getState()[key] : '{}';
+      return false || JSON.parse(value);
+    },
+
+    set: function(key, value) {
+      try {
+        var setValue = {};
+        setValue[key] = JSON.stringify(value);
+        window.vscode.setState(setValue);
+        return true;
+      } catch (e) {
+        if (isQuotaExceeded(e)) {
+          return false;
+        }
+      }
+    },
+    remove: function(key) {
+      var value = window.vscode.getState()[key];
+      var removeValue = {};
+      removeValue[key] = null;
+      window.vscode.setState(removeValue);
+      return value;
+    },
+    clear: function() {
+      var prevState = window.vscode.getState();
+      var clearValue = {};
+      for (var key in prevState) {
+        clearValue[key] = null;
+      }
+      window.vscode.setState(clearValue);
+    },
+  };
 });
