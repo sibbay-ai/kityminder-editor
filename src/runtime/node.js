@@ -31,7 +31,7 @@ define(function(require, exports, module) {
         action: function() {
           if (command.indexOf('Append') === 0) {
             AppendLock++;
-            minder.execCommand(command, 'topic');
+            minder.execCommand(command, "分支主题");
 
             // provide in input runtime
             function afterAppend() {

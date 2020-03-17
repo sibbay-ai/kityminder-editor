@@ -14,7 +14,7 @@ angular.module('kityminderEditor').directive('appendNode', [
         commandBinder.bind(minder, 'appendchildnode', $scope);
 
         $scope.execCommand = function(command) {
-          minder.execCommand(command, 'topic');
+          minder.execCommand(command, "分支主题");
           editText();
         };
 

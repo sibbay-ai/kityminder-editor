@@ -23,13 +23,13 @@ angular.module('kityminderEditor').directive('progressEditor', [
         $scope.getProgressTitle = function(p) {
           switch (p) {
             case 0:
-              return 'clear';
+              return "移除进度";
             case 1:
-              return 'undone';
+              return "未开始";
             case 9:
-              return 'done';
+              return "全部完成";
             default:
-              return 'done' + (p - 1) + '/8';
+              return "完成" + (p - 1) + "/8";
           }
         };
       },
