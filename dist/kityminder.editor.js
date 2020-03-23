@@ -1405,7 +1405,7 @@ _p[14] = {
             minder.renderTo(this.selector);
             minder.setTheme(null);
             minder.select(minder.getRoot(), true);
-            minder.execCommand("text", "MainTopic");
+            minder.execCommand("text", "中心主题");
             // 导出给其它 Runtime 使用
             this.minder = minder;
         }
@@ -1436,7 +1436,7 @@ _p[15] = {
                     action: function() {
                         if (command.indexOf("Append") === 0) {
                             AppendLock++;
-                            minder.execCommand(command, "topic");
+                            minder.execCommand(command, "分支主题");
                             // provide in input runtime
                             function afterAppend() {
                                 if (!--AppendLock) {
@@ -3727,7 +3727,7 @@ angular.module('kityminderEditor').directive('appendNode', [
         commandBinder.bind(minder, 'appendchildnode', $scope);
 
         $scope.execCommand = function(command) {
-          minder.execCommand(command, 'topic');
+          minder.execCommand(command, "分支主题");
           editText();
         };
 
@@ -4631,13 +4631,13 @@ angular.module('kityminderEditor').directive('progressEditor', [
         $scope.getProgressTitle = function(p) {
           switch (p) {
             case 0:
-              return 'clear';
+              return "移除进度";
             case 1:
-              return 'undone';
+              return "未开始";
             case 9:
-              return 'done';
+              return "全部完成";
             default:
-              return 'done' + (p - 1) + '/8';
+              return "完成" + (p - 1) + "/8";
           }
         };
       },
