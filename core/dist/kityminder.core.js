@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Kity Minder Core - v1.4.50 - 2020-03-19
+ * Kity Minder Core - v1.4.50 - 2020-03-24
  * https://github.com/fex-team/kityminder-core
  * GitHub: https://github.com/fex-team/kityminder-core.git 
  * Copyright (c) 2020 Baidu FEX; Licensed BSD-3-Clause
@@ -3806,18 +3806,17 @@ _p[35] = {
         _p.r(42);
         _p.r(43);
         _p.r(45);
-        _p.r(46);
         _p.r(47);
         _p.r(48);
         _p.r(49);
-        _p.r(51);
         _p.r(50);
         _p.r(52);
+        _p.r(51);
         _p.r(53);
         _p.r(54);
         _p.r(55);
-        _p.r(44);
         _p.r(56);
+        _p.r(44);
         _p.r(57);
         _p.r(58);
         _p.r(59);
@@ -3826,25 +3825,27 @@ _p[35] = {
         _p.r(62);
         _p.r(63);
         _p.r(64);
+        _p.r(46);
         _p.r(65);
         _p.r(66);
-        _p.r(70);
         _p.r(67);
-        _p.r(69);
+        _p.r(71);
         _p.r(68);
+        _p.r(70);
+        _p.r(69);
         _p.r(40);
         _p.r(36);
         _p.r(37);
         _p.r(38);
         _p.r(39);
         _p.r(41);
-        _p.r(77);
+        _p.r(78);
+        _p.r(81);
         _p.r(80);
         _p.r(79);
-        _p.r(78);
-        _p.r(80);
-        _p.r(82);
         _p.r(81);
+        _p.r(83);
+        _p.r(82);
         _p.r(0);
         _p.r(1);
         _p.r(2);
@@ -3852,12 +3853,12 @@ _p[35] = {
         _p.r(4);
         _p.r(5);
         _p.r(6);
-        _p.r(71);
-        _p.r(75);
         _p.r(72);
-        _p.r(74);
-        _p.r(73);
         _p.r(76);
+        _p.r(73);
+        _p.r(75);
+        _p.r(74);
+        _p.r(77);
         module.exports = kityminder;
     }
 };
@@ -4449,7 +4450,7 @@ _p[43] = {
         var MinderNode = _p.r(21);
         var Command = _p.r(9);
         var Module = _p.r(20);
-        var TextRenderer = _p.r(62);
+        var TextRenderer = _p.r(63);
         Module.register("basestylemodule", function() {
             var km = this;
             function getNodeDataOrStyle(node, name) {
@@ -4819,8 +4820,116 @@ _p[45] = {
     }
 };
 
-//src/module/dragtree.js
+//src/module/diff-icons.js
 _p[46] = {
+    value: function(require, exports, module) {
+        var kity = _p.r(17);
+        var utils = _p.r(33);
+        var Minder = _p.r(19);
+        var MinderNode = _p.r(21);
+        var Command = _p.r(9);
+        var Module = _p.r(20);
+        var Renderer = _p.r(27);
+        //     result["icon"] = "mchoice";
+        // } else if (iconIndex === 62) {
+        //     result["icon"] = "healthbubble";
+        // } else if (iconIndex === 63) {
+        //     result["icon"] = "text";
+        // } else if (iconIndex === 41) {
+        //     result["icon"] = "duration";
+        Module.register("DiffIconsModule", function() {
+            var minder = this;
+            // jscs:disable maximumLineLength
+            var NEW_PATH = "M576 448V192H448v256H192v128h256v256h128V576h256V448z";
+            var CHANGE_PATH = "M450.602458 665.598073a62.463819 62.463819 0 0 0 122.879645 0L614.441984 102.399704A102.615282 102.615282 0 0 0 512.04228 0 105.256116 105.256116 0 0 0 409.642577 112.639674L450.602458 665.598073z m61.439822 153.599556a102.399704 102.399704 0 1 0 102.399704 102.399703 96.740773 96.740773 0 0 0-102.399704-102.399703z";
+            var DELETE_PATH = "M852.901888 256.671744L597.38466987 512.18896213l256.6422528 256.6422528c23.6519424 23.6519424 23.69672533 61.84850773 0.1867776 85.35845547-23.494656 23.494656-61.6923136 23.44987307-85.344256-0.20097707L512.2260992 597.34644053 256.70888107 852.86475093c-23.50230187 23.50230187-61.7447424 23.412736-85.344256-0.1867776-23.62135893-23.62135893-23.7109248-61.86379947-0.20862294-85.36610133l255.51721814-255.51721813-256.63460694-256.6356992c-23.60715947-23.60715947-23.68907947-61.84086187-0.1933312-85.33661014 23.5175936-23.5175936 61.75238827-23.4356736 85.35845547 0.17148587l256.6356992 256.6356992 255.50957227-255.50957227c23.53943893-23.53943893 61.73709653-23.4061824 85.35845546 0.2162688 23.5995136 23.59842133 23.7338624 61.79607893 0.19442347 85.33551787z m0 0";
+            // 类型图标的图形
+            var DiffIconsIcon = kity.createClass("DiffIconsIcon", {
+                base: kity.Group,
+                constructor: function(diff) {
+                    this.callBase();
+                    this.setSize(20);
+                    this.setDiff(diff);
+                    this.create();
+                },
+                setSize: function(size) {
+                    this.width = this.height = size;
+                },
+                setDiff: function(diff) {
+                    this.diff = diff;
+                },
+                create: function() {
+                    var icons = {
+                        new: new kity.Path().setPathData(NEW_PATH).fill("#F81E1E").scale(.02),
+                        change: new kity.Path().setPathData(CHANGE_PATH).fill("#F81E1E").scale(.02),
+                        delete: new kity.Path().setPathData(DELETE_PATH).fill("#F81E1E").scale(.02)
+                    };
+                    this.path = icons[this.diff];
+                    this.rect = new kity.Rect(20, 20, -2, -6, 4).fill("rgba(255, 255, 255, 0)");
+                    this.addShapes([ this.rect, this.path ]);
+                }
+            });
+            /**
+         * @command DiffIcons
+         * @description 设置节点的优先级信息
+         * @param {number} value 要设置的优先级（添加一个优先级小图标）
+         *     取值为 0 移除优先级信息；
+         *     取值为 1 - 9 设置优先级，超过 9 的优先级不渲染
+         * @state
+         *    0: 当前有选中的节点
+         *   -1: 当前没有选中的节点
+         */
+            var DiffIconsCommand = kity.createClass("SetDiffIconsCommand", {
+                base: Command,
+                execute: function(km, value) {
+                    var node = km.getSelectedNode();
+                    node.setData("diff", value || null);
+                    node.render();
+                    node.getMinder().layout(300);
+                },
+                queryValue: function(km) {
+                    var node = km.getSelectedNode();
+                    return node && node.getData("diff");
+                },
+                queryState: function(km) {
+                    return km.getSelectedNodes().length === 1 ? 0 : -1;
+                }
+            });
+            return {
+                commands: {
+                    "diff-icons": DiffIconsCommand
+                },
+                renderers: {
+                    left: kity.createClass("DiffIconsRenderer", {
+                        base: Renderer,
+                        create: function(node) {
+                            return new DiffIconsIcon(node.getData("diff"));
+                        },
+                        shouldRender: function(node) {
+                            return node.getData("diff");
+                        },
+                        update: function(icon, node, box) {
+                            var data = node.getData("diff");
+                            var spaceLeft = node.getStyle("space-left"), x, y;
+                            x = box.left - icon.width - spaceLeft;
+                            y = -icon.height / 2;
+                            icon.setTranslate(x, y);
+                            return new kity.Box({
+                                x: x,
+                                y: y,
+                                width: icon.width,
+                                height: icon.height
+                            });
+                        }
+                    })
+                }
+            };
+        });
+    }
+};
+
+//src/module/dragtree.js
+_p[47] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -5161,7 +5270,7 @@ _p[46] = {
 };
 
 //src/module/expand.js
-_p[47] = {
+_p[48] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -5427,7 +5536,7 @@ _p[47] = {
 };
 
 //src/module/font.js
-_p[48] = {
+_p[49] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -5435,7 +5544,7 @@ _p[48] = {
         var MinderNode = _p.r(21);
         var Command = _p.r(9);
         var Module = _p.r(20);
-        var TextRenderer = _p.r(62);
+        var TextRenderer = _p.r(63);
         function getNodeDataOrStyle(node, name) {
             return node.getData(name) || node.getStyle(name);
         }
@@ -5574,7 +5683,7 @@ _p[48] = {
 };
 
 //src/module/hyperlink.js
-_p[49] = {
+_p[50] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -5686,7 +5795,7 @@ _p[49] = {
 };
 
 //src/module/image-viewer.js
-_p[50] = {
+_p[51] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var keymap = _p.r(15);
@@ -5791,7 +5900,7 @@ _p[50] = {
 };
 
 //src/module/image.js
-_p[51] = {
+_p[52] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -5913,7 +6022,7 @@ _p[51] = {
 };
 
 //src/module/keynav.js
-_p[52] = {
+_p[53] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6068,7 +6177,7 @@ _p[52] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[53] = {
+_p[54] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var Command = _p.r(9);
@@ -6143,7 +6252,7 @@ _p[53] = {
 };
 
 //src/module/node.js
-_p[54] = {
+_p[55] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6293,7 +6402,7 @@ _p[54] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[55] = {
+_p[56] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6392,7 +6501,7 @@ _p[55] = {
 };
 
 //src/module/outline.js
-_p[56] = {
+_p[57] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6509,7 +6618,7 @@ _p[56] = {
 };
 
 //src/module/priority.js
-_p[57] = {
+_p[58] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6635,7 +6744,7 @@ _p[57] = {
 };
 
 //src/module/progress.js
-_p[58] = {
+_p[59] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -6760,7 +6869,7 @@ _p[58] = {
 };
 
 //src/module/resource.js
-_p[59] = {
+_p[60] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -7090,7 +7199,7 @@ _p[59] = {
 };
 
 //src/module/select.js
-_p[60] = {
+_p[61] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -7235,7 +7344,7 @@ _p[60] = {
 };
 
 //src/module/style.js
-_p[61] = {
+_p[62] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -7340,7 +7449,7 @@ _p[61] = {
 };
 
 //src/module/text.js
-_p[62] = {
+_p[63] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -7594,7 +7703,7 @@ _p[62] = {
 };
 
 //src/module/type-icons.js
-_p[63] = {
+_p[64] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -7639,8 +7748,6 @@ _p[63] = {
                         text: new kity.Path().setPathData(TEXT_DATA).fill("#f4ea2a").scale(.02),
                         duration: new kity.Path().setPathData(DURATION_DATA).fill("#f4ea2a").scale(.02)
                     };
-                    console.log("type", this._type);
-                    console.log("path", icons[this._type]);
                     this.path = icons[this._type];
                     this.rect = new kity.Rect(20, 20, -2, -6, 4).fill("rgba(255, 255, 255, 0)");
                     this.addShapes([ this.rect, this.path ]);
@@ -7706,7 +7813,7 @@ _p[63] = {
 };
 
 //src/module/view.js
-_p[64] = {
+_p[65] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -8028,7 +8135,7 @@ _p[64] = {
 };
 
 //src/module/zoom.js
-_p[65] = {
+_p[66] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var utils = _p.r(33);
@@ -8207,7 +8314,7 @@ _p[65] = {
 };
 
 //src/protocol/json.js
-_p[66] = {
+_p[67] = {
     value: function(require, exports, module) {
         var data = _p.r(12);
         data.registerProtocol("json", module.exports = {
@@ -8226,7 +8333,7 @@ _p[66] = {
 };
 
 //src/protocol/markdown.js
-_p[67] = {
+_p[68] = {
     value: function(require, exports, module) {
         var data = _p.r(12);
         var LINE_ENDING_SPLITER = /\r\n|\r|\n/;
@@ -8357,7 +8464,7 @@ _p[67] = {
 };
 
 //src/protocol/png.js
-_p[68] = {
+_p[69] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var data = _p.r(12);
@@ -8577,7 +8684,7 @@ _p[68] = {
 };
 
 //src/protocol/svg.js
-_p[69] = {
+_p[70] = {
     value: function(require, exports, module) {
         var data = _p.r(12);
         /**
@@ -8849,7 +8956,7 @@ _p[69] = {
 };
 
 //src/protocol/text.js
-_p[70] = {
+_p[71] = {
     value: function(require, exports, module) {
         var data = _p.r(12);
         var Browser = _p.r(17).Browser;
@@ -9080,7 +9187,7 @@ _p[70] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[71] = {
+_p[72] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("default", {
@@ -9114,7 +9221,7 @@ _p[71] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[72] = {
+_p[73] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("filetree", {
@@ -9142,7 +9249,7 @@ _p[72] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[73] = {
+_p[74] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("fish-bone", {
@@ -9184,7 +9291,7 @@ _p[73] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[74] = {
+_p[75] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("right", {
@@ -9208,7 +9315,7 @@ _p[74] = {
  * @author: techird
  * @copyright: Baidu FEX, 2014
  */
-_p[75] = {
+_p[76] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("structure", {
@@ -9231,7 +9338,7 @@ _p[75] = {
  * @author: along
  * @copyright: bpd729@163.com, 2015
  */
-_p[76] = {
+_p[77] = {
     value: function(require, exports, module) {
         var template = _p.r(31);
         template.register("tianpan", {
@@ -9252,7 +9359,7 @@ _p[76] = {
 };
 
 //src/theme/default.js
-_p[77] = {
+_p[78] = {
     value: function(require, exports, module) {
         var theme = _p.r(32);
         [ "classic", "classic-compact" ].forEach(function(name) {
@@ -9311,7 +9418,7 @@ _p[77] = {
 };
 
 //src/theme/fish.js
-_p[78] = {
+_p[79] = {
     value: function(require, exports, module) {
         var theme = _p.r(32);
         theme.register("fish", {
@@ -9362,7 +9469,7 @@ _p[78] = {
 };
 
 //src/theme/fresh.js
-_p[79] = {
+_p[80] = {
     value: function(require, exports, module) {
         var kity = _p.r(17);
         var theme = _p.r(32);
@@ -9431,7 +9538,7 @@ _p[79] = {
 };
 
 //src/theme/snow.js
-_p[80] = {
+_p[81] = {
     value: function(require, exports, module) {
         var theme = _p.r(32);
         [ "snow", "snow-compact" ].forEach(function(name) {
@@ -9486,7 +9593,7 @@ _p[80] = {
 };
 
 //src/theme/tianpan.js
-_p[81] = {
+_p[82] = {
     value: function(require, exports, module) {
         var theme = _p.r(32);
         [ "tianpan", "tianpan-compact" ].forEach(function(name) {
@@ -9548,7 +9655,7 @@ _p[81] = {
 };
 
 //src/theme/wire.js
-_p[82] = {
+_p[83] = {
     value: function(require, exports, module) {
         var theme = _p.r(32);
         theme.register("wire", {
