@@ -42,6 +42,7 @@ angular.module('kityminderEditor').service('memory', function() {
       try {
         var setValue = {};
         setValue[key] = JSON.stringify(value);
+        console.log('set state: ', setValue);
         window.vscode.setState(setValue);
         return true;
       } catch (e) {

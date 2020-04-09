@@ -18,7 +18,7 @@ angular.module('kityminderEditor')
             link: function(scope) {
                 minder.setDefaultOptions({zoom: config.get('zoom')});
 
-                scope.isNavOpen = !memory.get('navigator-hidden');
+                scope.isNavOpen = true;
 
                 scope.getZoomRadio = function(value) {
                     var zoomStack = minder.getOption('zoom');

@@ -23,6 +23,9 @@ angular
             try {
               const importData = JSON.parse(window.message.importData);
               window.minder.importJson(importData);
+              window.minder.execCommand("ExpandToLevel", 2);
+              window.minder.execCommand("hand");
+              window.minder.execCommand("Theme", "classic-compact");
             } catch (ex) {
               console.error(ex);
             }

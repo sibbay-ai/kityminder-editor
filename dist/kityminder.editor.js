@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * kityminder-editor - v1.0.67 - 2020-03-17
+ * kityminder-editor - v1.0.67 - 2020-04-09
  * https://github.com/fex-team/kityminder-editor
  * GitHub: https://github.com/fex-team/kityminder-editor 
  * Copyright (c) 2020 ; Licensed 
@@ -3214,6 +3214,7 @@ angular.module('kityminderEditor').service('memory', function() {
       try {
         var setValue = {};
         setValue[key] = JSON.stringify(value);
+        console.log('set state: ', setValue);
         window.vscode.setState(setValue);
         return true;
       } catch (e) {
@@ -4154,7 +4155,7 @@ angular.module('kityminderEditor')
             link: function(scope) {
                 minder.setDefaultOptions({zoom: config.get('zoom')});
 
-                scope.isNavOpen = !memory.get('navigator-hidden');
+                scope.isNavOpen = true;
 
                 scope.getZoomRadio = function(value) {
                     var zoomStack = minder.getOption('zoom');
